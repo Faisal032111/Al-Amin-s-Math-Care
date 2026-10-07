@@ -1,0 +1,17 @@
+# Sensitive environment files
+.env
+.env.*
+!.env.example
+
+# Temporary and local scripts
+reset_mysql_password.bat
+.credentials.local
+
+# Logs and cache
+storage/logs/*.log
+storage/leads/*.json
+
+# OS specific files
+Thumbs.db
+Desktop.ini
+.DS_Store

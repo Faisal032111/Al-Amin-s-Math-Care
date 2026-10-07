@@ -1,0 +1,32 @@
+# robots.txt for alaminmathcare.com
+# Al Amin's Math Care — Specialized Mathematics Coaching Institute, Farmgate, Dhaka
+
+User-agent: *
+Allow: /
+Allow: /index.php
+Allow: /about.php
+Allow: /courses.php
+Allow: /course-details.php
+Allow: /batches.php
+Allow: /teachers.php
+Allow: /teacher-profile.php
+Allow: /results.php
+Allow: /results-lookup.php
+Allow: /notices.php
+Allow: /routine.php
+Allow: /contact.php
+Allow: /admission.php
+Allow: /verify-id.php
+
+# Disallow private administrative and system directories
+Disallow: /admin/
+Disallow: /portal/
+Disallow: /api/
+Disallow: /storage/
+Disallow: /scratch/
+Disallow: /database/
+Disallow: /config/
+Disallow: /includes/
+
+# Sitemap Location
+Sitemap: https://alaminmathcare.com/sitemap.xml

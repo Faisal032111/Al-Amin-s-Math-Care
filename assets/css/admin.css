@@ -1,0 +1,168 @@
+/**
+ * ============================================================================
+ * Al Amin's Math Care — Next-Gen (2026+ Standards) Admin Dashboard Stylesheet
+ * Brand: alaminmathcare.com
+ * Aesthetic: Clean Dark/Light Hybrid, Glassmorphism, Rounded Cards & KPI Metrics
+ * ============================================================================
+ */
+
+:root {
+    --admin-sidebar-bg: #0b192c;
+    --admin-sidebar-hover: #182e4b;
+    --admin-sidebar-active: #008dda;
+    --admin-bg: #f4f7fb;
+    --admin-card-bg: #ffffff;
+    --admin-border: #e2e8f0;
+    --admin-text-main: #0f172a;
+    --admin-text-muted: #64748b;
+    --admin-accent-cyan: #008dda;
+    --admin-accent-gold: #f59e0b;
+    --admin-success: #10b981;
+    --admin-urgent: #ef4444;
+    --admin-radius: 14px;
+    --admin-shadow: 0 4px 16px rgba(11, 25, 44, 0.05);
+}
+
+body {
+    background-color: var(--admin-bg);
+    font-family: 'Inter', 'Noto Sans Bengali', sans-serif;
+    color: var(--admin-text-main);
+    overflow-x: hidden;
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   1. Admin Sidebar Navigation
+   ──────────────────────────────────────────────────────────────────────────── */
+.admin-sidebar {
+    background: var(--admin-sidebar-bg);
+    min-height: 100vh;
+    color: #cbd5e1;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.12);
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.admin-brand {
+    padding: 1.4rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.admin-nav-item {
+    color: #94a3b8;
+    padding: 0.7rem 1.1rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 600;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    margin: 2px 8px;
+}
+
+.admin-nav-item:hover {
+    background: var(--admin-sidebar-hover);
+    color: #ffffff;
+    transform: translateX(3px);
+}
+
+.admin-nav-item.active {
+    background: linear-gradient(135deg, var(--admin-sidebar-active), #006eb0);
+    color: #ffffff;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(0, 141, 218, 0.3);
+}
+
+.admin-nav-item i {
+    font-size: 1.15rem;
+    width: 22px;
+    text-align: center;
+}
+
+.admin-nav-section-title {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: #64748b;
+    font-weight: 800;
+    padding: 1.1rem 1.25rem 0.4rem;
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   2. Topbar & Header
+   ──────────────────────────────────────────────────────────────────────────── */
+.admin-topbar {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--admin-border);
+    padding: 0.9rem 1.6rem;
+    border-radius: var(--admin-radius);
+    box-shadow: var(--admin-shadow);
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   3. Metric Cards & KPI Displays
+   ──────────────────────────────────────────────────────────────────────────── */
+.card-custom {
+    border: 1px solid var(--admin-border);
+    border-radius: var(--admin-radius);
+    box-shadow: var(--admin-shadow);
+    background: var(--admin-card-bg);
+    transition: all 0.25s ease;
+}
+
+.card-custom:hover {
+    box-shadow: 0 10px 24px rgba(11, 25, 44, 0.08);
+    transform: translateY(-2px);
+}
+
+.metric-card {
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.metric-card .icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    font-size: 1.4rem;
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   4. Tables & Badges
+   ──────────────────────────────────────────────────────────────────────────── */
+.table-custom {
+    margin-bottom: 0;
+}
+
+.table-custom th {
+    background: #f8fafc;
+    color: #475569;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 800;
+    padding: 0.95rem 1.1rem;
+    border-bottom: 2px solid var(--admin-border);
+}
+
+.table-custom td {
+    padding: 0.95rem 1.1rem;
+    vertical-align: middle;
+    font-size: 0.92rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.badge-subtle-success { background: #dcfce7; color: #166534; font-weight: 700; padding: 0.35rem 0.65rem; border-radius: 6px; }
+.badge-subtle-warning { background: #fef3c7; color: #92400e; font-weight: 700; padding: 0.35rem 0.65rem; border-radius: 6px; }
+.badge-subtle-danger  { background: #fee2e2; color: #991b1b; font-weight: 700; padding: 0.35rem 0.65rem; border-radius: 6px; }
+.badge-subtle-info    { background: #e0f2fe; color: #075985; font-weight: 700; padding: 0.35rem 0.65rem; border-radius: 6px; }
+.badge-subtle-primary { background: #e0e7ff; color: #3730a3; font-weight: 700; padding: 0.35rem 0.65rem; border-radius: 6px; }

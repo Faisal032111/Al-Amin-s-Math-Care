@@ -1,0 +1,765 @@
+/**
+ * ============================================================================
+ * Al Amin's Math Care — Next-Gen (2026+ Standards) Master Stylesheet
+ * Brand: alaminmathcare.com
+ * Aesthetic: Frosted Glassmorphism, Deep Math Midnight Navy & Electric Wave
+ * ============================================================================
+ */
+
+:root {
+    /* ── Core Mathematical Color Palette ── */
+    --primary: #0b192c;
+    --primary-dark: #050c17;
+    --primary-light: #1e3e62;
+    --primary-surface: #f0f4f9;
+
+    --accent-cyan: #008dda;
+    --accent-cyan-light: #41b06e;
+    --accent-cyan-glow: rgba(0, 141, 218, 0.25);
+    
+    --accent-gold: #f59e0b;
+    --accent-amber: #e8913a;
+    --accent-hover: #d97706;
+
+    --success: #10b981;
+    --success-bg: #ecfdf5;
+    --success-border: #a7f3d0;
+    --success-text: #065f46;
+
+    --urgent: #ef4444;
+    --urgent-bg: #fef2f2;
+    --urgent-border: #fecaca;
+    --urgent-text: #991b1b;
+
+    /* ── Neutral Tones & Surfaces ── */
+    --bg: #f8fafc;
+    --surface: #ffffff;
+    --surface-glass: rgba(255, 255, 255, 0.85);
+    --surface-glass-dark: rgba(11, 25, 44, 0.78);
+    --border: #e2e8f0;
+    --border-glass: rgba(255, 255, 255, 0.25);
+    --border-hover: rgba(0, 141, 218, 0.35);
+
+    --text: #0f172a;
+    --text-muted: #64748b;
+    --text-soft: #94a3b8;
+
+    /* ── Elevation & Shadows ── */
+    --shadow-sm: 0 2px 4px rgba(11, 25, 44, 0.04);
+    --shadow-md: 0 6px 16px -2px rgba(11, 25, 44, 0.07), 0 2px 6px -1px rgba(11, 25, 44, 0.04);
+    --shadow-lg: 0 14px 28px -4px rgba(11, 25, 44, 0.09), 0 8px 12px -3px rgba(11, 25, 44, 0.05);
+    --shadow-hover: 0 22px 38px -6px rgba(11, 25, 44, 0.14), 0 12px 18px -4px rgba(0, 141, 218, 0.08);
+    --shadow-glow-cyan: 0 0 25px rgba(0, 141, 218, 0.35);
+    --shadow-glow-whatsapp: 0 8px 28px rgba(16, 185, 129, 0.45);
+
+    /* ── Geometry & Layout ── */
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-pill: 9999px;
+
+    /* ── Typography Pairing ── */
+    --font-en: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-bn: 'Noto Sans Bengali', 'Inter', system-ui, sans-serif;
+    --font: var(--font-en);
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   1. Base & Reset
+   ──────────────────────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--font);
+    color: var(--text);
+    background-color: var(--bg);
+    line-height: 1.62;
+    padding-bottom: 84px;
+    margin: 0;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body.locale-bn, [lang="bn"] {
+    font-family: var(--font-bn);
+    line-height: 1.68;
+}
+
+@media (min-width: 992px) {
+    body { padding-bottom: 0; }
+}
+
+a {
+    color: var(--accent-cyan);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--primary-light);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   2. Header & Frosted Navbar
+   ──────────────────────────────────────────────────────────────────────────── */
+.site-header {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.85);
+    transition: all 0.3s ease;
+    z-index: 1020;
+}
+
+.site-header.scrolled {
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 4px 20px rgba(11, 25, 44, 0.06);
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--primary) !important;
+    font-weight: 800;
+}
+
+.brand-mark {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: #ffffff;
+    border-radius: var(--radius-sm);
+    font-size: 1.4rem;
+    font-weight: 800;
+    box-shadow: 0 4px 12px rgba(11, 25, 44, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: transform 0.25s ease;
+}
+
+.navbar-brand:hover .brand-mark {
+    transform: scale(1.05) rotate(4deg);
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+}
+
+.brand-text strong {
+    font-size: 1.05rem;
+    color: var(--primary);
+    letter-spacing: -0.01em;
+}
+
+.brand-text small {
+    font-size: 0.72rem;
+    color: var(--accent-cyan);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.nav-link {
+    color: var(--text) !important;
+    font-weight: 600;
+    font-size: 0.92rem;
+    padding: 0.55rem 0.95rem !important;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link:hover {
+    color: var(--accent-cyan) !important;
+    background: rgba(0, 141, 218, 0.06);
+    transform: translateY(-1px);
+}
+
+.nav-link.active {
+    color: var(--primary) !important;
+    background: rgba(11, 25, 44, 0.06);
+    font-weight: 700;
+}
+
+.nav-admission {
+    color: var(--accent-amber) !important;
+    font-weight: 700 !important;
+    position: relative;
+}
+
+.nav-admission::after {
+    content: 'HOT';
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    font-size: 0.55rem;
+    font-weight: 800;
+    background: var(--urgent);
+    color: #fff;
+    padding: 1px 4px;
+    border-radius: 4px;
+    letter-spacing: 0.02em;
+}
+
+/* Language Switcher Pill */
+.lang-toggle {
+    display: inline-flex;
+    background: rgba(11, 25, 44, 0.05);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    padding: 3px;
+    overflow: hidden;
+}
+
+.lang-btn {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    border-radius: var(--radius-pill);
+    transition: all 0.2s ease;
+}
+
+.lang-btn.active {
+    background: var(--primary);
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(11, 25, 44, 0.2);
+}
+
+/* Action Buttons */
+.btn-cta {
+    background: linear-gradient(135deg, var(--accent-amber), #f59e0b);
+    color: #ffffff !important;
+    border: none;
+    font-weight: 700;
+    font-size: 0.88rem;
+    border-radius: var(--radius-pill);
+    padding: 0.5rem 1.25rem;
+    box-shadow: 0 4px 14px rgba(232, 145, 58, 0.35);
+    transition: all 0.25s ease;
+}
+
+.btn-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(232, 145, 58, 0.45);
+    color: #ffffff;
+}
+
+.btn-primary-custom {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    border: none;
+    color: #ffffff !important;
+    font-weight: 700;
+    border-radius: var(--radius-sm);
+    padding: 0.8rem 1.5rem;
+    box-shadow: 0 4px 14px rgba(11, 25, 44, 0.25);
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-primary-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(11, 25, 44, 0.35);
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+}
+
+.btn-outline-custom {
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    font-weight: 700;
+    border-radius: var(--radius-sm);
+    padding: 0.75rem 1.5rem;
+    background: transparent;
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-outline-custom:hover {
+    background: var(--primary);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(11, 25, 44, 0.15);
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   3. Next-Gen Hero Section (Math Midnight + Geometric Mesh)
+   ──────────────────────────────────────────────────────────────────────────── */
+.hero-section {
+    background: linear-gradient(135deg, #050c17 0%, #0b192c 45%, #182e4b 100%);
+    color: #ffffff;
+    padding: 5rem 0 6rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Mathematical Grid & Floating Glow Orbs */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+        radial-gradient(circle at 15% 25%, rgba(0, 141, 218, 0.2) 0%, transparent 45%),
+        radial-gradient(circle at 85% 75%, rgba(245, 158, 11, 0.15) 0%, transparent 45%),
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 36px 36px, 36px 36px;
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    padding: 0.45rem 1.1rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    animation: float-badge 3s ease-in-out infinite alternate;
+}
+
+@keyframes float-badge {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-4px); }
+}
+
+.hero-title {
+    font-size: clamp(2.1rem, 4.5vw, 3.4rem);
+    font-weight: 900;
+    line-height: 1.18;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.02em;
+}
+
+.hero-title .text-gradient-cyan {
+    background: linear-gradient(135deg, #00d2ff, #70e2ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 1.12rem;
+    opacity: 0.92;
+    max-width: 580px;
+    margin-bottom: 2rem;
+    line-height: 1.7;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.hero-card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
+}
+
+.hero-card h3 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 1.25rem;
+    color: #ffffff;
+}
+
+.hero-info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.hero-info-item .icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 141, 218, 0.2);
+    border: 1px solid rgba(0, 141, 218, 0.4);
+    border-radius: var(--radius-sm);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    font-size: 1.1rem;
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   4. Stats & Trust Band (Glassmorphic Strip)
+   ──────────────────────────────────────────────────────────────────────────── */
+.stats-band {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 2.75rem 0;
+    box-shadow: var(--shadow-sm);
+}
+
+.stat-item {
+    text-align: center;
+    padding: 1rem;
+    position: relative;
+}
+
+.stat-number {
+    font-size: clamp(2.2rem, 3.8vw, 3rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--primary), var(--accent-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.1;
+    margin-bottom: 0.4rem;
+}
+
+.stat-label {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-weight: 700;
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   5. Sections & General Typography
+   ──────────────────────────────────────────────────────────────────────────── */
+.section {
+    padding: 4.5rem 0;
+}
+
+.section-header {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 3rem;
+}
+
+.section-header .section-tag {
+    display: inline-block;
+    color: var(--accent-cyan);
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+}
+
+.section-header h2 {
+    font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+}
+
+.section-header p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    margin: 0;
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   6. Modern Glass Cards (Courses, Features, Batches, Teachers)
+   ──────────────────────────────────────────────────────────────────────────── */
+.feature-card,
+.course-card,
+.batch-card,
+.teacher-card,
+.testimonial-card,
+.notice-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.75rem;
+    height: 100%;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card:hover,
+.course-card:hover,
+.batch-card:hover,
+.testimonial-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--border-hover);
+}
+
+.feature-icon {
+    width: 52px;
+    height: 52px;
+    background: rgba(0, 141, 218, 0.1);
+    color: var(--accent-cyan);
+    border-radius: var(--radius-sm);
+    display: grid;
+    place-items: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid rgba(0, 141, 218, 0.2);
+}
+
+.badge-class {
+    background: rgba(0, 141, 218, 0.12);
+    color: var(--accent-cyan);
+    font-weight: 800;
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    border: 1px solid rgba(0, 141, 218, 0.2);
+}
+
+.course-meta {
+    list-style: none;
+    padding: 0;
+    margin: 1.25rem 0;
+    font-size: 0.92rem;
+}
+
+.course-meta li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.45rem 0;
+    border-bottom: 1px dashed var(--border);
+}
+
+.course-meta li span:first-child {
+    color: var(--text-muted);
+}
+
+/* Batch Seat Status Badges */
+.badge-seats {
+    font-size: 0.78rem;
+    font-weight: 800;
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-pill);
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.badge-seats-open {
+    background: var(--success-bg);
+    color: var(--success-text);
+    border: 1px solid var(--success-border);
+}
+
+.badge-seats-limited {
+    background: var(--urgent-bg);
+    color: var(--urgent-text);
+    border: 1px solid var(--urgent-border);
+    animation: pulse-glow 2s infinite;
+}
+
+.badge-seats-full {
+    background: #f1f5f9;
+    color: #64748b;
+    border: 1px solid #cbd5e1;
+}
+
+@keyframes pulse-glow {
+    0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+    70% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+/* Teacher Avatar & Profile Card */
+.teacher-avatar {
+    width: 128px;
+    height: 128px;
+    margin: 0 auto 1.25rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--accent-cyan));
+    color: #ffffff;
+    display: grid;
+    place-items: center;
+    font-size: 2.8rem;
+    font-weight: 800;
+    border: 4px solid #ffffff;
+    box-shadow: 0 8px 24px rgba(11, 25, 44, 0.15);
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   7. Forms & Inputs (Ergonomic Float System)
+   ──────────────────────────────────────────────────────────────────────────── */
+.form-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2.25rem;
+    box-shadow: var(--shadow-lg);
+}
+
+.form-control, .form-select {
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--border);
+    padding: 0.8rem 1rem;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    background-color: #fafbfc;
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: #ffffff;
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 0 4px var(--accent-cyan-glow);
+    outline: none;
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   8. WhatsApp Pulsating Floating Widget
+   ──────────────────────────────────────────────────────────────────────────── */
+.whatsapp-float {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 5.75rem;
+    z-index: 1040;
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    color: #ffffff;
+    border-radius: var(--radius-pill);
+    padding: 0.85rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    box-shadow: var(--shadow-glow-whatsapp);
+    font-weight: 700;
+    font-size: 0.88rem;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: pulse-whatsapp 2.5s infinite;
+}
+
+.whatsapp-float:hover {
+    color: #ffffff;
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(37, 211, 102, 0.6);
+}
+
+@keyframes pulse-whatsapp {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+    70% { box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+@media (min-width: 992px) {
+    .whatsapp-float { bottom: 2rem; right: 2rem; }
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   9. Mobile Sticky Bottom Action Bar
+   ──────────────────────────────────────────────────────────────────────────── */
+.mobile-bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-top: 1px solid rgba(226, 232, 240, 0.9);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    z-index: 1030;
+    padding: 0.4rem 0 calc(0.4rem + env(safe-area-inset-bottom));
+    box-shadow: 0 -4px 16px rgba(11, 25, 44, 0.05);
+}
+
+.mobile-bottom-nav a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    color: var(--text-muted);
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.35rem 0.15rem;
+    transition: all 0.2s ease;
+}
+
+.mobile-bottom-nav a.active {
+    color: var(--accent-cyan);
+    font-weight: 800;
+}
+
+.mobile-bottom-nav .icon {
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   10. Footer (Dark Math Midnight Aesthetics)
+   ──────────────────────────────────────────────────────────────────────────── */
+.site-footer {
+    background: var(--primary-dark);
+    color: rgba(255, 255, 255, 0.85);
+    margin-top: 3rem;
+    position: relative;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-brand {
+    font-weight: 900;
+    color: #ffffff;
+    font-size: 1.3rem;
+}
+
+.footer-heading {
+    color: #ffffff;
+    font-weight: 800;
+    margin-bottom: 1.25rem;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.72);
+    display: block;
+    padding: 0.3rem 0;
+    font-size: 0.94rem;
+    transition: all 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: var(--accent-cyan);
+    transform: translateX(3px);
+}
+
+.footer-divider {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.text-muted-soft {
+    color: rgba(255, 255, 255, 0.6) !important;
+}

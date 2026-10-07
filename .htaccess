@@ -1,0 +1,142 @@
+# ============================================================
+# Al Amin's Math Care — Root .htaccess
+# Apache Security Hardening, HTTPS Enforcement & URL Rewriting
+# ============================================================
+
+Options -Indexes -MultiViews
+ServerSignature Off
+
+# ──────────────────────────────────────────────
+# 1. Force HTTPS
+# ──────────────────────────────────────────────
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Redirect HTTP → HTTPS
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP_HOST} !^localhost [NC]
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # Remove www (optional — uncomment if needed)
+    # RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+    # RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# ──────────────────────────────────────────────
+# 2. Security Headers
+# ──────────────────────────────────────────────
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com https://maps.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; frame-src https://maps.google.com; connect-src 'self';"
+
+    # HSTS — Enable ONLY after SSL is fully confirmed on production
+    # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+</IfModule>
+
+# ──────────────────────────────────────────────
+# 3. Block Direct Access to Sensitive Directories
+# ──────────────────────────────────────────────
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Block direct access to config/, database/, lang/ folders
+    RewriteRule ^config(/|$) - [F,L]
+    RewriteRule ^database(/|$) - [F,L]
+    RewriteRule ^lang(/|$) - [F,L]
+    RewriteRule ^storage(/|$) - [F,L]
+    RewriteRule ^\.git(/|$) - [F,L]
+
+    # Block access to hidden files (e.g., .env, .htpasswd)
+    RewriteRule (^|/)\. - [F,L]
+</IfModule>
+
+# Block access to sensitive file extensions directly
+<FilesMatch "\.(env|sql|log|json|md|lock|bak|sh|ini|pem|key|crt)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# ──────────────────────────────────────────────
+# 4. Disable PHP Execution in Uploads Directory
+# ──────────────────────────────────────────────
+<IfModule mod_rewrite.c>
+    RewriteRule ^assets/uploads/.*\.(php|php3|php4|php5|php7|phtml|pl|py|cgi|sh|exe|asp|aspx|jsp)$ - [F,L]
+</IfModule>
+
+# ──────────────────────────────────────────────
+# 5. Clean URL Rewriting
+# ──────────────────────────────────────────────
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Serve existing files/directories directly
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Course detail: /courses/{slug}
+    RewriteRule ^courses/([a-zA-Z0-9_-]+)/?$ course-details.php?slug=$1 [L,QSA]
+
+    # Batch detail: /batches/{id}
+    RewriteRule ^batches/([0-9]+)/?$ batch-details.php?id=$1 [L,QSA]
+
+    # Teacher profile: /teachers/{slug}
+    RewriteRule ^teachers/([a-zA-Z0-9_-]+)/?$ teacher-profile.php?slug=$1 [L,QSA]
+
+    # Notice detail: /notices/{id}
+    RewriteRule ^notices/([0-9]+)/?$ notice-details.php?id=$1 [L,QSA]
+
+    # Student ID verify: /verify-id/{token}
+    RewriteRule ^verify-id/([a-zA-Z0-9_-]+)/?$ verify-id.php?token=$1 [L,QSA]
+
+    # Results lookup
+    RewriteRule ^results/?$ results-lookup.php [L,QSA]
+
+    # Admission & Demo
+    RewriteRule ^admission/?$ admission.php [L,QSA]
+    RewriteRule ^demo/?$ demo.php [L,QSA]
+
+    # Routine
+    RewriteRule ^routine/?$ routine.php [L,QSA]
+</IfModule>
+
+# ──────────────────────────────────────────────
+# 6. Compression & Caching (Performance)
+# ──────────────────────────────────────────────
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType application/x-font-woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+# ──────────────────────────────────────────────
+# 7. PHP Settings Override
+# ──────────────────────────────────────────────
+<IfModule mod_php.c>
+    php_flag display_errors Off
+    php_flag log_errors On
+    php_value upload_max_filesize 10M
+    php_value post_max_size 12M
+    php_value max_execution_time 30
+    php_value session.cookie_httponly 1
+    php_value session.use_strict_mode 1
+    php_value session.cookie_samesite Strict
+</IfModule>
